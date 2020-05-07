@@ -3,6 +3,7 @@ import { Router } from 'express';
 // Controllers
 import UserController from './controllers/UserController';
 import CpuController from './controllers/CpuController'; 
+import CoreController from './controllers/CoreController'; 
 import RamController from './controllers/RamController'; 
 import StorageController from './controllers/StorageController';
 
@@ -14,6 +15,7 @@ const routes = Router();
 // POST routes (This is where computer sends)
 routes.post('/user', UserController.create);
 routes.post('/cpu', auth, CpuController.create);
+routes.post('/core', auth, CoreController.create);
 routes.post('/ram', auth, RamController.create);
 routes.post('/strg', auth, StorageController.create);
 
