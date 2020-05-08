@@ -13,9 +13,9 @@ export default {
           'core.usage',
           'core.created_at'
         )
-        .leftJoin('cpu', 'core.user_id', 'users.id')
+        .leftJoin('cpu', 'core.user_id', 'cpu.user_id')
         .leftJoin('users', 'core.user_id', 'users.id')
-        .where('user_id', req.id);
+        .where('core.user_id', req.id);
 
       return res.status(200).json(cpu);
     } catch (e) {

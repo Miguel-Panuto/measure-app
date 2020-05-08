@@ -17,7 +17,9 @@ export default {
         const { name } = req.body;
         try {
             await connection('users').insert({ name });
-            return res.status(201).json({ success: 'User created' });
+            const users = await connection('users').select('id');
+            const lastUser = users[users.length - 1];
+            return res.status(201).json({ id: lastUser.id });
         } catch(e) {
             return res.status(500).json({ error: e })
         }
