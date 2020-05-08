@@ -1,5 +1,5 @@
 import os from 'os';
-import api from './services/api';
+import api from '../services/api';
 
 const cpusUsage = async(id: number) => {
   const auth = { headers: { id } }

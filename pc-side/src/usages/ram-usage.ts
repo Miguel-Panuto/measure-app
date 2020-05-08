@@ -1,5 +1,5 @@
 import os from 'os';
-import api from './services/api';
+import api from '../services/api';
 
 const ramUsage = async (id: number) => {
     const usage = 100 - os.freemem()/os.totalmem() * 100;

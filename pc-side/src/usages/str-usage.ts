@@ -1,5 +1,5 @@
 import si from 'systeminformation';
-import api from './services/api';
+import api from '../services/api';
 
 const strUsage = async (id : number) => {
     si.fsSize().then(disks => disks.map(disk => {
