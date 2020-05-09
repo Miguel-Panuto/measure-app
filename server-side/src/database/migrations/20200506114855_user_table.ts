@@ -9,4 +9,4 @@ export const up = async (knex: Knex): Promise<any> =>
   });
 
 export const down = async (knex: Knex): Promise<any> =>
-  knex.schema.dropTable('users'); 
+  knex.schema.dropTable('users');
