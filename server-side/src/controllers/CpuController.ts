@@ -16,8 +16,14 @@ export default {
         .leftJoin('cpu', 'core.user_id', 'cpu.user_id')
         .leftJoin('users', 'core.user_id', 'users.id')
         .where('core.user_id', req.id);
-
-      return res.status(200).json(cpu);
+      const cpuModel = {
+        name: cpu[0].name,
+        model: cpu[0].model,
+        speed: cpu[0].speed,
+        usages: cpu.map(({ core_id, usage }) => { return { core_id, usage }})
+        
+      }
+      return res.status(200).json(cpuModel);
     } catch (e) {
       return res.status(500).json({ error: e });
     }
