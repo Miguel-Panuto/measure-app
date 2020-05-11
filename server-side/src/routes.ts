@@ -23,6 +23,7 @@ routes.post('/strg', auth, StorageController.create);
 routes.delete('/user', auth, UserController.delete);
 
 // GET routes (Inside the app)
+routes.get('/', auth, (req, res) => res.send('Success'));
 routes.get('/user', UserController.index);
 routes.get('/cpu', auth, CpuController.index);
 routes.get('/ram', auth, RamController.index);
