@@ -6,7 +6,7 @@ export default {
     async index(req: Request, res:Response) {
         try {
             const storage = await connection('storage')
-                .select('users.name', 'storage.mount', 'storage.usage', 'storage.created_at')
+                .select('storage.mount', 'storage.usage')
                 .leftJoin('users', 'storage.user_id', 'users.id')
                 .where('user_id', req.id);
 
