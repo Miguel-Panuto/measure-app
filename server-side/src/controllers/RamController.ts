@@ -6,7 +6,7 @@ export default {
     async index(req: Request, res:Response) {
         try {
             const ram = await connection('ram')
-                .select('ram.usage', 'users.name', 'ram.created_at')
+                .select('ram.usage')
                 .leftJoin('users', 'ram.user_id', 'users.id')
                 .where('user_id', req.id);
 
