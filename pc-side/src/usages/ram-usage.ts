@@ -1,17 +1,16 @@
 import os from 'os';
-import api from '../services/api';
+import si from 'systeminformation';
 
-const ramUsage = async (id: number) => {
-    const usage = 100 - os.freemem()/os.totalmem() * 100;
-    await api.post('/ram', {
-        usage
-    }, {
-        headers: {
-            id
-        }
-    })
-}
+export const ramUsage = () => {
+  return (100 - (os.freemem() / os.totalmem()) * 100).toFixed(2);
+};
 
-
-
-export default ramUsage;
+export const ramSpecs = async () => {
+  const ramSpecs = await si.memLayout();
+  return ramSpecs.map((mem) => {
+    return {
+      clock: mem.clockSpeed,
+      size: mem.size,
+    };
+  });
+};

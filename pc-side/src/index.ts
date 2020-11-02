@@ -1,24 +1,14 @@
-import os from 'os';
-import fs from 'fs';
+import express from 'express';
 
-import api from './services/api';
+import routes from './routes';
+import pickIp from './usages/ip-address';
 
-import cpuUsage from './usages/cpu-usage';
-import ramUsage from './usages/ram-usage';
-import strUsage from './usages/str-usage';
+const app = express();
 
-api.post('/user', {
-    name: os.userInfo().username + " " + os.platform(),
-  })
-  .then((res) => {
-    const id = res.data.id;
-    cpuUsage(id);
-    for(let i = 0; i < 100; i++) {
-      ramUsage(id);
-      strUsage(id);
-    }
-    fs.writeFile('id.txt', id, 'utf-8', () => console.log('ID writed'));
-  })
-  .catch((err) => {
-    throw err;
-  });
+const PORT = process.env.PORT || 3435;
+
+app.use(express.json());
+app.use(routes);
+
+
+app.listen(PORT, async () => console.log(`SERVER RUNNING: ${await pickIp()}:${PORT}`));
